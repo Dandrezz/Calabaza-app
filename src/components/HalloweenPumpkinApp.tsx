@@ -5,7 +5,7 @@ const URL_API_DATA = 'https://calabaza-api-app.diegoaporterol.workers.dev/api/ca
 const URL_CLOUDINARY = 'https://api.cloudinary.com/v1_1/dqvtr77op/image/upload'
 
 function HalloweenPumpkinApp() {
-    const canvasRef = useRef(null);
+    const canvasRef = useRef<any>(null);
     const [isDrawing, setIsDrawing] = useState(false);
     const [color, setColor] = useState('#FFA500');
     const [lineWidth, setLineWidth] = useState(2);
@@ -20,7 +20,7 @@ function HalloweenPumpkinApp() {
         ctx.lineJoin = 'round';
     }, [color, lineWidth]);
 
-    const startDrawing = (e) => {
+    const startDrawing = (e:any) => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
         const rect = canvas.getBoundingClientRect();
@@ -32,7 +32,7 @@ function HalloweenPumpkinApp() {
         setIsDrawing(true);
     };
 
-    const draw = (e) => {
+    const draw = (e:any) => {
         if (!isDrawing) return;
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
@@ -112,7 +112,7 @@ function HalloweenPumpkinApp() {
                     min="1"
                     max="20"
                     value={lineWidth}
-                    onChange={(e) => setLineWidth(e.target.value)}
+                    onChange={(e) => setLineWidth(parseInt(e.target.value, 10))}
                     className="w-32"
                 />
                 <button
@@ -128,7 +128,7 @@ function HalloweenPumpkinApp() {
                 width={400}
                 height={400}
                 onMouseDown={startDrawing}
-                onMouseMove={draw}
+                onMouseMove={(e)=>draw(e)}
                 onMouseUp={stopDrawing}
                 onMouseOut={stopDrawing}
                 onTouchStart={startDrawing}

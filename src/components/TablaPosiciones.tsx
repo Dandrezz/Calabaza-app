@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
 
 const URL_API_DATA = 'https://calabaza-api-app.diegoaporterol.workers.dev/api/calabaza'
-const URL_CLOUDINARY = 'https://api.cloudinary.com/v1_1/dqvtr77op/image/upload'
+
+export interface CalabazaI {
+    id: number
+    autor: string
+    puntos: number
+    url: string
+  }
 
 function TableApp() {
 
-    const [calabazas, setCalabazas] = useState([])
+    const [calabazas, setCalabazas] = useState<CalabazaI[]>([])
 
     useEffect(() => {
 
@@ -20,7 +26,7 @@ function TableApp() {
 
 
     return (
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
             {
                 calabazas.map(calabaza => (
                     <div className="text-center" key={calabaza.id}>
