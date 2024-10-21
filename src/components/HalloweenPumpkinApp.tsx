@@ -10,7 +10,6 @@ function HalloweenPumpkinApp() {
     const [color, setColor] = useState('#FFA500');
     const [lineWidth, setLineWidth] = useState(2);
     const [autor, setAutor] = useState('Calabazin')
-    
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -71,7 +70,7 @@ function HalloweenPumpkinApp() {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        autor: 'anonimo',
+                        autor: autor,
                         puntos: 0,
                         url: data.secure_url
                     })
@@ -94,7 +93,7 @@ function HalloweenPumpkinApp() {
 
     return (
         <div className="flex flex-col items-center p-4">
-            <h1 className="text-2xl font-bold mb-4">Dibuja tu Calabaza de Halloween</h1>
+            <h1 className="text-2xl font-bold mb-4 text-white">Dibuja tu Calabaza de Halloween</h1>
 
             <span className='text-white mb-4 text-2xl'>Nombre: {autor}</span>
             <input type="text" value={autor} className='mb-4' onChange={(e)=>{
@@ -132,6 +131,9 @@ function HalloweenPumpkinApp() {
                 onMouseMove={draw}
                 onMouseUp={stopDrawing}
                 onMouseOut={stopDrawing}
+                onTouchStart={startDrawing}
+                onTouchMove={draw}
+                onTouchEnd={stopDrawing}
                 className="border border-gray-300 mb-4"
             />
             <button
