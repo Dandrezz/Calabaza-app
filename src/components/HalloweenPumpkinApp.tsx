@@ -93,10 +93,10 @@ function HalloweenPumpkinApp() {
 
     return (
         <div className="flex flex-col items-center p-4">
-            <h1 className="text-2xl font-bold mb-4 text-white">Dibuja tu Calabaza de Halloween</h1>
+            <h1 className="text-2xl font-bold mb-4 text-white font-[Creepster]">Dibuja tu Calabaza de Halloween</h1>
 
-            <span className='text-white mb-4 text-2xl'>Nombre: {autor}</span>
-            <input type="text" value={autor} className='mb-4' onChange={(e)=>{
+            <span className='text-white mb-4 text-2xl font-[Creepster]'>Nombre: {autor}</span>
+            <input type="text" value={autor} className='mb-4 text-black' onChange={(e)=>{
                 setAutor(e.target.value)
             }}/>
 
@@ -117,7 +117,7 @@ function HalloweenPumpkinApp() {
                 />
                 <button
                     onClick={clearCanvas}
-                    className="bg-[#f97316] text-white px-4 py-2 rounded flex items-center"
+                    className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded flex items-center"
                 >
                     <Eraser className="mr-2" />
                     Borrar
@@ -134,11 +134,11 @@ function HalloweenPumpkinApp() {
                 onTouchStart={startDrawing}
                 onTouchMove={draw}
                 onTouchEnd={stopDrawing}
-                className="border border-gray-300 mb-4"
+                className="border border-gray-300 mb-4 rounded-md"
             />
             <button
                 onClick={handleUpload}
-                className="bg-orange-500 text-white px-4 py-2 rounded flex items-center"
+                className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded flex items-center"
             >
                 <Upload className="mr-2" />
                 Subir y Mejorar
