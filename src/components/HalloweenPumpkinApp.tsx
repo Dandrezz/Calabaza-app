@@ -20,16 +20,37 @@ function HalloweenPumpkinApp() {
         ctx.lineJoin = 'round';
     }, [color, lineWidth]);
 
+    useEffect(() => {
+        const preventScroll = (e: TouchEvent) => {
+            if (isDrawing) {
+                e.preventDefault();
+            }
+        };
+        document.addEventListener('touchmove', preventScroll, { passive: false });
+        return () => {
+            document.removeEventListener('touchmove', preventScroll);
+        };
+    }, [isDrawing]);
+
     const startDrawing = (e:any) => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
         const rect = canvas.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+
+        let x, y;
+
+        if (e.touches) {
+            x = e.touches[0].clientX - rect.left;
+            y = e.touches[0].clientY - rect.top;
+        } else {
+            x = e.clientX - rect.left;
+            y = e.clientY - rect.top;
+        }
 
         ctx.beginPath();
         ctx.moveTo(x, y);
         setIsDrawing(true);
+        e.preventDefault(); 
     };
 
     const draw = (e:any) => {
@@ -37,14 +58,22 @@ function HalloweenPumpkinApp() {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
         const rect = canvas.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        let x, y;
+
+        if (e.touches) {
+            x = e.touches[0].clientX - rect.left;
+            y = e.touches[0].clientY - rect.top;
+        } else {
+            x = e.clientX - rect.left;
+            y = e.clientY - rect.top;
+        }
 
         ctx.lineTo(x, y);
         ctx.stroke();
+        e.preventDefault();
     };
 
-    const stopDrawing = () => {
+    const stopDrawing = (e:any) => {
         const ctx = canvasRef.current.getContext('2d');
         ctx.closePath();
         setIsDrawing(false);
