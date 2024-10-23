@@ -34,6 +34,7 @@ function TableApp() {
                             <button
                                 onClick={() => {
                                     calabaza.puntos += 1
+                                    const fileName = calabaza.url.split('/').pop();
                                     fetch(URL_API_DATA + `/${calabaza.id}`, {
                                         method: 'PUT',
                                         headers: {
@@ -41,7 +42,8 @@ function TableApp() {
                                         },
                                         body: JSON.stringify({
                                             ...calabaza,
-                                            puntos: calabaza.puntos
+                                            puntos: calabaza.puntos,
+                                            url: `https://res.cloudinary.com/dqvtr77op/image/upload/v1729491282/${fileName}`
                                         })
                                     }).then(res => res.json())
                                         .then(data => {
