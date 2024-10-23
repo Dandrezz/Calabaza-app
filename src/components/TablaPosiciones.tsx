@@ -22,12 +22,12 @@ function TableApp() {
     }, [])
 
     return (
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 mt-4">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 mt-4 image-container">
             {
                 calabazas.map(calabaza => (
                     <div className="text-center" key={calabaza.id}>
                         <span className="font-bold text-xl font-[Creepster]">{calabaza.autor}</span>
-                        <img className="mx-auto"
+                        <img className="mx-auto transition-all duration-300 hover:brightness-75 hover:scale-105"
                             src={calabaza.url} alt="calabaza" />
                         <div className="mb-4">Puntos: {calabaza.puntos}</div>
                         <div className="flex justify-center">

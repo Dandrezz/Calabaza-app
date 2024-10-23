@@ -126,7 +126,7 @@ const { title } = Astro.props;
 		const navbar = document.getElementById("navbar-default");
 
 		button?.addEventListener("click", () => {
-			console.log("click!")
+			console.log("click!");
 			if (navbar?.style.display === "none" || !navbar?.style.display) {
 				navbar!.style.display = "block";
 			} else {
@@ -162,5 +162,32 @@ const { title } = Astro.props;
 			Bitstream Vera Sans Mono,
 			Courier New,
 			monospace;
+	}
+	<style > @keyframes shake {
+		0% {
+			transform: translate(0, 0) rotate(0deg);
+		}
+		25% {
+			transform: translate(-5px, -5px) rotate(-5deg);
+		}
+		50% {
+			transform: translate(5px, 5px) rotate(5deg);
+		}
+		75% {
+			transform: translate(-3px, -3px) rotate(-3deg);
+		}
+		100% {
+			transform: translate(0, 0) rotate(0deg);
+		}
+	}
+
+	.spooky-image {
+		transition: all 0.2s ease;
+	}
+
+	.spooky-image:hover {
+		animation: shake 0.5s ease infinite;
+		filter: brightness(0.8) contrast(1.2);
+		cursor: pointer;
 	}
 </style>
