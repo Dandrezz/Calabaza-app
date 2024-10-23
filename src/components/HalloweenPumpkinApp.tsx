@@ -126,7 +126,7 @@ function HalloweenPumpkinApp() {
 
     return (
         <div className="flex flex-col items-center p-4">
-            <h1 className="text-2xl font-bold mb-4 text-white font-[Creepster]">Dibuja tu Calabaza de Halloween</h1>
+            <h1 className="text-2xl font-bold mb-4 text-orange-500 font-[Creepster]">Dibuja tu Calabaza de Halloween</h1>
 
             <span className='text-white mb-4 text-2xl font-[Creepster]'>Nombre: {autor}</span>
             <input type="text" value={autor} className='mb-4 text-black' onChange={(e)=>{
