@@ -9,7 +9,8 @@ function HalloweenPumpkinApp() {
     const [isDrawing, setIsDrawing] = useState(false);
     const [color, setColor] = useState('#FFA500');
     const [lineWidth, setLineWidth] = useState(2);
-    const [autor, setAutor] = useState('Calabazin')
+    const [autor, setAutor] = useState('Calabazin');
+    const [showCat, setShowCat] = useState(false)
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -80,6 +81,9 @@ function HalloweenPumpkinApp() {
     };
 
     const handleUpload = async () => {
+
+        setShowCat(true)
+
         const canvas = canvasRef.current;
         const imageData = canvas.toDataURL('image/png');
 
@@ -152,27 +156,42 @@ function HalloweenPumpkinApp() {
                     Borrar
                 </button>
             </div>
-            <canvas
-                ref={canvasRef}
-                width={400}
-                height={400}
-                onMouseDown={startDrawing}
-                onMouseMove={(e)=>draw(e)}
-                onMouseUp={stopDrawing}
-                onMouseOut={stopDrawing}
-                onTouchStart={startDrawing}
-                onTouchMove={draw}
-                onTouchEnd={stopDrawing}
-                className="border border-gray-300 mb-4 rounded-md"
-            />
-            <button
-                onClick={handleUpload}
-                className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded flex items-center"
-            >
-                <Upload className="mr-2" />
-                Subir monstruosidad
-            </button>
 
+            {
+                showCat
+                ?
+                    (
+                        <>
+                            <h1 className='text-white'>Espere por favor</h1>
+                            <img className='md:w-1/3' src='https://res.cloudinary.com/dqvtr77op/image/upload/v1729649489/y9drw5zwxppmu6r9xeq9_aodkuj.avif' alt='gato embrujado'/>
+                        </>
+                    )
+                :
+                (
+                    <>
+                        <canvas
+                            ref={canvasRef}
+                            width={400}
+                            height={400}
+                            onMouseDown={startDrawing}
+                            onMouseMove={(e)=>draw(e)}
+                            onMouseUp={stopDrawing}
+                            onMouseOut={stopDrawing}
+                            onTouchStart={startDrawing}
+                            onTouchMove={draw}
+                            onTouchEnd={stopDrawing}
+                            className="border border-gray-300 mb-4 rounded-md"
+                        />
+                        <button
+                            onClick={handleUpload}
+                            className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded flex items-center"
+                        >
+                            <Upload className="mr-2" />
+                            Subir monstruosidad
+                        </button>
+                    </>
+                )
+            }
         </div>
     );
 }
